@@ -1,6 +1,6 @@
 const mongoose  = require("mongoose")
 const bcrypt = require ('bcryptjs')
-const { response } = require("express")
+
 
 let newSchema = new mongoose.Schema({
     firstName: {type:String, required:true},
