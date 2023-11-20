@@ -2,7 +2,9 @@ require('dotenv').config(); // This will load the variables from the .env file
 
 const mongoose = require('mongoose');
 
+
 const URI = process.env.URI;
+const SECRET = process.env.SECRET;
 
 mongoose.connect(URI)
   .then(() => {
