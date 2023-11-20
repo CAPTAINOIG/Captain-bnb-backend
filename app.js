@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const mongoose = require('mongoose'); // Include Mongoose
+// const mongoose = require('mongoose'); // Include Mongoose
 
 // Load environment variables
 dotenv.config();
@@ -14,13 +14,15 @@ app.use(express.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB connection setup
-mongoose.connect(process.env.URI)
-  .then(() => {
-    console.log('MongoDB connected successfully');
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err.message);
-  });
+// mongoose.connect(process.env.URI)
+//   .then(() => {
+//     console.log('MongoDB connected successfully');
+//   })
+//   .catch((err) => {
+//     console.error('MongoDB connection error:', err.message);
+//   });
+
+  require('./connection/mongoose.connection')
 
 // Router setup
 let userRouter = require("./route/user.route");
