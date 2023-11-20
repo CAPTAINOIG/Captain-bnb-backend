@@ -1,12 +1,14 @@
-// const mongoose = require ('mongoose')
+require('dotenv').config(); // This will load the variables from the .env file
 
+const mongoose = require('mongoose');
 
-// let URI = process.env.URI
+const URI = process.env.URI;
 
-// mongoose.connect(URI)
-// .then(()=>{
-//     console.log("MONGOOSE HAS CONNECTED SUCCESSFULLY");
-// })
-// .catch((err)=>{
-//     console.log(err);
-// })
+mongoose.connect(URI)
+  .then(() => {
+    console.log('Mongoose connected successfully');
+    // Your further code after the successful connection can be added here
+  })
+  .catch((err) => {
+    console.error('Mongoose connection error:', err.message);
+  });
