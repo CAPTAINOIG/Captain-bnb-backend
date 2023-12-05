@@ -242,22 +242,19 @@ const place = (req, res) => {
   form.save()
     .then((result) => {
       console.log(result);
-      res.status(200).json({ status: true, message: "success!", result });
+      res.status(200).json({ status: true, message: "Successfully added the place!", result });
     })
     .catch((err) => {
       console.error(err);
       if (err.code === 11000) {
-        res.status(409).json({ status: false, message: "error" });
+        res.status(409).json({ status: false, message: "Place already exists!" });
       } else {
-        res.status(400).json({ status: false, message: "error" });
+        res.status(400).json({ status: false, message: "Failed to add the place." });
       }
     });
 };
 
 
-// app.post('/api/logout', (req,res) => {
-//   res.cookie('token', '').json(true);
-// });
 
 
 const uploadLink  = async (req, res)=>{
