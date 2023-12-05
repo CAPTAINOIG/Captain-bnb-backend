@@ -242,14 +242,14 @@ const place = (req, res) => {
   form.save()
     .then((result) => {
       console.log(result);
-      res.status(200).json({ status: true, message: "User signed up successfully", result });
+      res.status(200).json({ status: true, message: "success!", result });
     })
     .catch((err) => {
       console.error(err);
       if (err.code === 11000) {
-        res.status(409).json({ status: false, message: "Duplicate user found" });
+        res.status(409).json({ status: false, message: "error" });
       } else {
-        res.status(400).json({ status: false, message: "Fill in appropriately" });
+        res.status(400).json({ status: false, message: "error" });
       }
     });
 };
