@@ -171,39 +171,6 @@ const password = (req, res) => {
 
 
 
-// const resetPassword = (req, res) => {
-//   const { email, otp, newPassword } = req.body;
-  
-//   if (!email || !otp || !newPassword) {
-//     // console.log('missig data');
-//     console.log(email, otp, newPassword);
-//     return res.status(400).json({ message: 'Missing required data' });
-//   }
-
-//   userModel.findOne({ email, otp })
-//     .then(async (user) => {
-//       if (!user) {
-//         return res.status(500).json({ message: 'User not found' });
-//       }
-//       console.log('is ok');
-//       const hashPassword = await bcryptjs.hash(newPassword, 10);
-//       userModel.updateOne({ _id: user._id }, { password: hashPassword })
-//         .then(user => {
-//           res.status(200).json({ message: 'Password reset successful' });
-//           console.log('Password reset successful');
-//         }).catch((error) => {
-//           res.status(500).json({ message: 'Internal server error' });
-//           console.log('internal server error');
-//         })
-
-
-//     }).catch((error) => {
-//       console.log(error);
-//     })
-// }
-
-
-
 const resetPassword = (req, res) => {
   const { email, otp, newPassword } = req.body;
   
@@ -268,62 +235,6 @@ const uploadLink  = async (req, res)=>{
   // res.json(url);
 };
 
-// app.post('/api/upload-by-link', async (req,res) => {
-//   const {link} = req.body;
-//   const newName = 'photo' + Date.now() + '.jpg';
-//   await imageDownloader.image({
-//     url: link,
-//     dest: '/tmp/' +newName,
-//   });
-//   const url = await uploadToS3('/tmp/' +newName, newName, mime.lookup('/tmp/' +newName));
-//   res.json(url);
-// });
-
-// const photosMiddleware = multer({ dest: '/tmp' });
-
-// const fileUpload = photosMiddleware.array('photos', 100);
-
-// const uploadFiles = async (req, res) => {
-//   const uploadedFiles = [];
-//   for (let i = 0; i < req.files.length; i++) {
-//     const { path, originalname, mimetype } = req.files[i];
-//     const url = await uploadToS3(path, originalname, mimetype);
-//     uploadedFiles.push(url);
-//   }
-//   res.json(uploadedFiles);
-// };
-// app.post('/api/upload', photosMiddleware.array('photos', 100), async (req,res) => {
-//   const uploadedFiles = [];
-//   for (let i = 0; i < req.files.length; i++) {
-//     const {path,originalname,mimetype} = req.files[i];
-//     const url = await uploadToS3(path, originalname, mimetype);
-//     uploadedFiles.push(url);
-//   }
-//   res.json(uploadedFiles);
-// });
-
-
-// const uploadFiles = (req, res) => {
-//   let image = req.body.fileUpload
-//   cloudinary.v2.uploader.upload(image, (error, result) => {
-//   })
-//       .then((response) => {
-//         let myimage = response.secure_url
-//         // console.log(myimage);
-//           PlaceModel.find(req.body.id, { $set: { image: req.body.myimage, status: true } })
-//               .then((response) => {
-//                   console.log(response);
-//                   res.send({ message: "image uploaded successfully", statue: true, myimage })
-//               })
-//               .catch((err) => {
-//                   console.log(err);
-//               })
-
-//       }).catch((err) => {
-//           console.log(err);
-//       })
-
-// }
 
 
 
