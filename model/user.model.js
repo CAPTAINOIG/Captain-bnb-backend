@@ -9,7 +9,16 @@ let newSchema = new mongoose.Schema({
     password: {type:String, required:true},
     phone: {type:String,required:true},
     otp: {type:Number},
-    registrationDate: {type: Date, default: Date.now()} 
+    registrationDate: {type: Date, default: Date.now()},
+    date: {
+        type: String,
+        default: () => new Date().toLocaleDateString(), // Default value for date
+      },
+      time: {
+        type: String,
+        default: () => new Date().toLocaleTimeString(), // Default value for time
+      },
+      
 })
 
 

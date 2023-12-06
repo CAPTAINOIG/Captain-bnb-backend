@@ -56,6 +56,29 @@ const registerUser = (req, res) => {
     });
 };
 
+const getAllUser = (req, res) => {
+  userModel.find()
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({ message: 'Users retrieved successfully', users: result });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: 'Error retrieving users', error: err.message });
+    });
+};
+
+const getUserPlace = async (req, res) => {
+  
+  try {
+    const result = await PlaceModel.find();
+    console.log(result);
+    res.status(200).json({message: 'Usersplace retrieved successfully', users: result });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({message: 'Error retrieving usersplace', error: err.message });
+  }
+};
 
 
 
@@ -289,4 +312,4 @@ const uploadLink  = async (req, res)=>{
 }
 
 
-module.exports = { registerUser, userLogin, getDashboard, password, resetPassword, place, uploadFiles, uploadLink }
+module.exports = { registerUser, userLogin, getDashboard, password, resetPassword, place, uploadFiles, uploadLink, getAllUser, getUserPlace }
