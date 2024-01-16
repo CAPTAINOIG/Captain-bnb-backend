@@ -14,9 +14,6 @@ multer()
 
 
 
-
-
-
 const pass = process.env.PASS;
 const USERMAIL = process.env.USERMAIL;
 const tokenStorage = new Map();
@@ -34,8 +31,6 @@ const transporter = nodemailer.createTransport({
     pass: pass
   }
 })
-
-
 
 
 
@@ -69,7 +64,6 @@ const getAllUser = (req, res) => {
 };
 
 const getUserPlace = async (req, res) => {
-  
   try {
     const result = await PlaceModel.find();
     console.log(result);
@@ -79,6 +73,74 @@ const getUserPlace = async (req, res) => {
     res.status(500).json({message: 'Error retrieving usersplace', error: err.message });
   }
 };
+
+const deleteOne = (req, res) => {
+  const itemId = req.body.id; // Assuming the ID is in the URL parameter
+  console.log(itemId);
+  userModel.deleteOne({ _id: itemId })
+    .then((result) => {
+      if (result.deletedCount === 1) {
+        res.status(200).json({ message: 'Item deleted successfully' });
+      } else {
+        res.status(404).json({ error: 'Item not found' });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error: 'Internal server error' });
+    });
+};
+
+const updateOne = (req, res) => {
+  const itemId = req.body.id; // Assuming the ID is in the request body
+  const updatedData = req.body.data; // New data for updating the model
+  userModel.findByIdAndUpdate(itemId, updatedData, { new: true })
+    .then((updatedItem) => {
+      if (updatedItem) {
+        res.status(200).json({ message: 'Item updated successfully', updatedItem });
+      } else {
+        res.status(404).json({ error: 'Item not found' });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error: 'Internal server error' });
+    });
+};
+
+
+
+const deletePlace = (req, res) => {
+  const itemId = req.body.id;// Assuming the ID is in the URL parameter
+// console.log(itemId)
+  PlaceModel.deleteOne({ _id: itemId })
+    .then((result) => {
+      if (result.deletedCount === 1) {
+        res.status(200).json({ message: 'Item deleted successfully' });
+      } else {
+        res.status(404).json({ error: 'Item not found' });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error: 'Internal server error' });
+    });
+};
+
+const updateOnePlace = (req, res) => {
+  const itemId = req.body.id; // Assuming the ID is in the request body
+  const updatedData = req.body.updatedData; // Assuming updatedData holds the fields to be updated
+  
+  PlaceModel.findByIdAndUpdate(itemId, updatedData, { new: true })
+    .then((updatedItem) => {
+      if (updatedItem) {
+        res.status(200).json({ message: 'Item updated successfully', updatedItem });
+      } else {
+        res.status(404).json({ error: 'Item not found' });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error: 'Internal server error' });
+    });
+};
+
 
 
 
@@ -246,7 +308,6 @@ const place = (req, res) => {
 
 
 
-
 const uploadLink  = async (req, res)=>{
   const {link} = req.body;
   const newName = 'photo' + Date.now() + '.jpg';
@@ -262,7 +323,6 @@ const uploadLink  = async (req, res)=>{
 
 
  const uploadFiles = async (req, res = response) => {
-
   try {
       const { owner, nameOfHost, title, address, photos, description, perks, extraInfo, maxGuests, price, bed, bath, 
        bedroom } = req.body;
@@ -312,4 +372,4 @@ const uploadLink  = async (req, res)=>{
 }
 
 
-module.exports = { registerUser, userLogin, getDashboard, password, resetPassword, place, uploadFiles, uploadLink, getAllUser, getUserPlace }
+module.exports = { registerUser, userLogin, getDashboard, password, resetPassword, place, uploadFiles, uploadLink, getAllUser, getUserPlace, deleteOne, deletePlace, updateOne, updateOnePlace }
