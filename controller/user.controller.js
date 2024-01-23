@@ -90,27 +90,27 @@ const deleteOne = (req, res) => {
     });
 };
 
-const updateOne = (req, res) => {
-  const itemId = req.body.id; // Assuming the ID is in the request body
-  const updatedData = req.body.data; // New data for updating the model
-  userModel.findByIdAndUpdate(itemId, updatedData, { new: true })
-    .then((updatedItem) => {
-      if (updatedItem) {
-        res.status(200).json({ message: 'Item updated successfully', updatedItem });
-      } else {
-        res.status(404).json({ error: 'Item not found' });
-      }
-    })
-    .catch((error) => {
-      res.status(500).json({ error: 'Internal server error' });
-    });
-};
+// const updateOne = (req, res) => {
+//   const itemId = req.body.id; // Assuming the ID is in the request body
+//   const updatedData = req.body.data; // New data for updating the model
+//   userModel.findByIdAndUpdate(itemId, updatedData, { new: true })
+//     .then((updatedItem) => {
+//       if (updatedItem) {
+//         res.status(200).json({ message: 'Item updated successfully', updatedItem });
+//       } else {
+//         res.status(404).json({ error: 'Item not found' });
+//       }
+//     })
+//     .catch((error) => {
+//       res.status(500).json({ error: 'Internal server error' });
+//     });
+// };
 
 
 
 const deletePlace = (req, res) => {
   const itemId = req.body.id;// Assuming the ID is in the URL parameter
-// console.log(itemId)
+console.log(itemId)
   PlaceModel.deleteOne({ _id: itemId })
     .then((result) => {
       if (result.deletedCount === 1) {
@@ -124,22 +124,22 @@ const deletePlace = (req, res) => {
     });
 };
 
-const updateOnePlace = (req, res) => {
-  const itemId = req.body.id; // Assuming the ID is in the request body
-  const updatedData = req.body.updatedData; // Assuming updatedData holds the fields to be updated
+// const updateOnePlace = (req, res) => {
+//   const itemId = req.body.id; // Assuming the ID is in the request body
+//   const updatedData = req.body.updatedData; // Assuming updatedData holds the fields to be updated
   
-  PlaceModel.findByIdAndUpdate(itemId, updatedData, { new: true })
-    .then((updatedItem) => {
-      if (updatedItem) {
-        res.status(200).json({ message: 'Item updated successfully', updatedItem });
-      } else {
-        res.status(404).json({ error: 'Item not found' });
-      }
-    })
-    .catch((error) => {
-      res.status(500).json({ error: 'Internal server error' });
-    });
-};
+//   PlaceModel.findByIdAndUpdate(itemId, updatedData, { new: true })
+//     .then((updatedItem) => {
+//       if (updatedItem) {
+//         res.status(200).json({ message: 'Item updated successfully', updatedItem });
+//       } else {
+//         res.status(404).json({ error: 'Item not found' });
+//       }
+//     })
+//     .catch((error) => {
+//       res.status(500).json({ error: 'Internal server error' });
+//     });
+// };
 
 
 
@@ -372,4 +372,4 @@ const uploadLink  = async (req, res)=>{
 }
 
 
-module.exports = { registerUser, userLogin, getDashboard, password, resetPassword, place, uploadFiles, uploadLink, getAllUser, getUserPlace, deleteOne, deletePlace, updateOne, updateOnePlace }
+module.exports = { registerUser, userLogin, getDashboard, password, resetPassword, place, uploadFiles, uploadLink, getAllUser, getUserPlace, deleteOne, deletePlace }

@@ -1,7 +1,7 @@
 const express = require ('express')
 const router = express.Router()
 
-const {registerUser, userLogin,  getDashboard, password, resetPassword, place, uploadFiles, uploadLink, getAllUser, getUserPlace, deleteOne, deletePlace, updateOne, updateOnePlace} = require('../controller/user.controller')
+const {registerUser, userLogin,  getDashboard, password, resetPassword, place, uploadFiles, uploadLink, getAllUser, getUserPlace, deleteOne, deletePlace} = require('../controller/user.controller')
 
 
 router.post("/signup", registerUser)
@@ -16,8 +16,8 @@ router.delete('/deleteUserPlace', deletePlace)
 
 
 
-router.put('/updateModel', updateOne)
-router.put('/update', updateOnePlace)
+// router.put('/updateModel', updateOne)
+// router.put('/update', updateOnePlace)
 
 
 
