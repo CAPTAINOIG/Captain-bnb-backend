@@ -75,7 +75,7 @@ const getUserPlace = async (req, res) => {
 };
 
 const deleteOne = (req, res) => {
-  const itemId = req.body.id; // Assuming the ID is in the URL parameter
+  const itemId = req.body.id; 
   console.log(itemId);
   userModel.deleteOne({ _id: itemId })
     .then((result) => {

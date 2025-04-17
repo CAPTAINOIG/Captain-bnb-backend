@@ -12,11 +12,11 @@ let newSchema = new mongoose.Schema({
     registrationDate: {type: Date, default: Date.now()},
     date: {
         type: String,
-        default: () => new Date().toLocaleDateString(), // Default value for date
+        default: () => new Date().toLocaleDateString(), 
       },
       time: {
         type: String,
-        default: () => new Date().toLocaleTimeString(), // Default value for time
+        default: () => new Date().toLocaleTimeString(), 
       },
       
 })
